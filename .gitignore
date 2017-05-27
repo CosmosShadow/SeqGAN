@@ -1,0 +1,3 @@
+*.pyc
+save/experiment-log.txt
+save/real_data.txt
