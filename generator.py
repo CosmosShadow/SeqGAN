@@ -39,6 +39,7 @@ class Generator(object):
 		self.h0 = tf.zeros([self.batch_size, self.hidden_dim])
 		self.h0 = tf.stack([self.h0, self.h0])
 
+		# 生成式
 		gen_o = tensor_array_ops.TensorArray(dtype=tf.float32, size=self.sequence_length,
 											 dynamic_size=False, infer_shape=True)
 		gen_x = tensor_array_ops.TensorArray(dtype=tf.int32, size=self.sequence_length,
@@ -65,6 +66,7 @@ class Generator(object):
 		self.gen_x = tf.transpose(self.gen_x, perm=[1, 0])  # batch_size x seq_length
 
 		# supervised pretraining for generator
+		# 有监督预训练
 		g_predictions = tensor_array_ops.TensorArray(
 			dtype=tf.float32, size=self.sequence_length,
 			dynamic_size=False, infer_shape=True)
